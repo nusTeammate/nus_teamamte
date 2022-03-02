@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-nusteammate-dev-172119-authRole",
+      "UnauthRoleArn": "arn:aws:iam::627604976104:role/amplify-nusteammate-dev-172119-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::627604976104:role/amplify-nusteammate-dev-172119-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-nusteammate-dev-172119-deployment",
+      "UnauthRoleName": "amplify-nusteammate-dev-172119-unauthRole",
+      "StackName": "amplify-nusteammate-dev-172119",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:627604976104:stack/amplify-nusteammate-dev-172119/217ca4d0-9a0a-11ec-8d6e-066e66f207c6",
+      "AmplifyAppId": "d23vgcjfat9u34"
+    },
+    "categories": {
+      "function": {
+        "mainLambda": {
+          "deploymentBucketName": "amplify-nusteammate-dev-172119-deployment",
+          "s3Key": "amplify-builds/mainLambda-547950722b385a57514a-build.zip"
+        }
+      }
+    }
+  }
+}
