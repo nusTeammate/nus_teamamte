@@ -15,7 +15,7 @@
       "function": {
         "mainLambda": {
           "deploymentBucketName": "amplify-nusteammate-dev-172119-deployment",
-          "s3Key": "amplify-builds/mainLambda-547950722b385a57514a-build.zip"
+          "s3Key": "amplify-builds/mainLambda-7764696976554865744f-build.zip"
         }
       }
     }

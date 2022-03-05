@@ -1,5 +1,7 @@
 {
-  "key1": "value1",
-  "key2": "value2",
-  "key3": "value3"
+  "body":{"postParam1":"pp1"},
+  "headers":{"headerKey1":"headerValue1"},
+  "method":"GET",
+  "params":{"urlParam1":"1234"},
+  "query":{"queryStringParam1":"ABCD"}
 }

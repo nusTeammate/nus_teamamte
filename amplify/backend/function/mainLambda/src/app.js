@@ -5,13 +5,21 @@ Licensed under the Apache License, Version 2.0 (the "License"). You may not use 
 or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
 */
-
-
-
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
+const mongoose = require('mongoose')
+const Projects = require('./models/projects')
+
+
+const dbUrl ='mongodb://localhost:27017/test'             //process.env.DB_URL ||         //deploy version
+mongoose.connect(dbUrl, {
+   
+});
+mongoose.connection.on("error", console.error.bind(console, "connection error:"))
+mongoose.connection.once("open", () => {
+    console.log("Datebase connected")
+})
 
 // declare a new express app
 const app = express()
@@ -25,13 +33,20 @@ app.use(function(req, res, next) {
   next()
 });
 
-app.get('/test', function(req,res){
+app.get('/test', async function(req,res){
   const people = [{name: 'Nader'}, {name: 'Jennifer'}]
-  res.json({
-    success: 'get call succeed!',
-    url: req.url,
-    people  
-  });
+  try{
+    const project = new Projects({name:"hello world"})
+    console.log('hello2')
+    await project.save();
+    const projects = await Projects.find({});
+  
+    console.log(projects)
+  }catch(e){
+    console.log(e)
+  }
+  
+  res.send("hello")
 })
 
 
@@ -91,8 +106,9 @@ app.delete('/item/*', function(req, res) {
   res.json({success: 'delete call succeed!', url: req.url});
 });
 
-app.listen(3000, function() {
+app.listen(3001, function() {
     console.log("App started")
+    console.log("listening on port 3001")
 });
 
 module.exports = app
