@@ -12,7 +12,7 @@ const mongoose = require('mongoose')
 const Projects = require('./models/projects')
 
 
-const dbUrl ='mongodb://localhost:27017/test'             //process.env.DB_URL ||         //deploy version
+const dbUrl ='mongodb://localhost:27017/test'      //'mongodb+srv://MagicBox:MagicBox@cluster0.r926u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' // ||        //process.env.DB_URL ||         //deploy version
 mongoose.connect(dbUrl, {
    
 });
@@ -36,8 +36,8 @@ app.use(function(req, res, next) {
 app.get('/test', async function(req,res){
   const people = [{name: 'Nader'}, {name: 'Jennifer'}]
   try{
-    const project = new Projects({name:"hello world"})
-    console.log('hello2')
+    const project = new Projects({name:"hello world!"})
+    console.log('hello3')
     await project.save();
     const projects = await Projects.find({});
   
@@ -46,7 +46,7 @@ app.get('/test', async function(req,res){
     console.log(e)
   }
   
-  res.send("hello")
+  res.send("hello you")
 })
 
 

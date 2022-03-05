@@ -7,7 +7,7 @@ import { API } from 'aws-amplify'
 function App() {
   async function callApi() {
     try{
-        const peopleData = await API.get('mainApi', '/test')
+        const peopleData = await API.get('localhost:3001', '/test')
         console.log('data:', peopleData)
     } catch (err) {
         console.log(err)
