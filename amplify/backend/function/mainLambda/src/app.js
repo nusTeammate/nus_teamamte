@@ -6,11 +6,14 @@ or in the "license" file accompanying this file. This file is distributed on an 
 See the License for the specific language governing permissions and limitations under the License.
 */
 const express = require('express')
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const mongoose = require('mongoose')
 const Projects = require('./models/projects')
-
+/*const Users = require('./models/user')
+const passport = require('passport')
+const LocalStrategy = require('passport-local');*/
 
 const dbUrl ='mongodb://localhost:27017/test'      //'mongodb+srv://MagicBox:MagicBox@cluster0.r926u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' // ||        //process.env.DB_URL ||         //deploy version
 mongoose.connect(dbUrl, {
@@ -24,7 +27,9 @@ mongoose.connection.once("open", () => {
 // declare a new express app
 const app = express()
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(awsServerlessExpressMiddleware.eventContext())
+app.use(cors())
 
 // Enable CORS for all methods
 app.use(function(req, res, next) {
@@ -33,20 +38,36 @@ app.use(function(req, res, next) {
   next()
 });
 
+/*app.use(passport.initialize)
+app.use(passport.session())
+passport.use(new LocalStrategy(User.authenticate()))*/
+
+
 app.get('/test', async function(req,res){
   const people = [{name: 'Nader'}, {name: 'Jennifer'}]
   try{
-    const project = new Projects({name:"hello world!"})
+    const project = new Projects({name:"hello world!", email:"ahhaah", password:"12345"})
     console.log('hello3')
     await project.save();
     const projects = await Projects.find({});
   
     console.log(projects)
+    res.send(JSON.stringify(projects))
   }catch(e){
     console.log(e)
   }
-  
-  res.send("hello you")
+})
+
+app.post('/test', async function(req, res){
+  try{
+    const obj = {name:req.body.name, email:req.body.email, password:req.body.password}
+    const newPro = new Projects(obj)
+    await newPro.save()
+    const projects = await Projects.find({})
+    console.log(projects)
+  }catch(e){
+    console.log(e)
+  }
 })
 
 

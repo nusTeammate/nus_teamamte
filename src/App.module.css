@@ -1,0 +1,21 @@
+.title {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    line-height: 36px;
+}
+
+.text{
+    font-family: 'Rozha One', serif;
+    font-size: 40px;
+}
+
+.input{
+    width:50%;
+    margin-bottom:10px;
+    height:35px;
+    color:#032D23;
+    border-color:#032D23;
+    border-radius: 6px;
+    border-width: 1.5px;
+    padding-left:20px;
+}
